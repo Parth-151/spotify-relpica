@@ -20,7 +20,7 @@ function convertSecondsToTime(seconds) {
 async function getSongs(folder) {
   currfolder = folder;
   console.log(currfolder);
-  let a = await fetch(`http://127.0.0.1:5500/${currfolder}/`);
+  let a = await fetch(`${document.URL}//${currfolder}/`);
 
   let response = await a.text();
 
@@ -82,7 +82,7 @@ const playMusic = (track, pause = false) => {
 };
 
 async function DisplayALbum(params) {
-  let a = await fetch(`http://127.0.0.1:5500/songs/`);
+  let a = await fetch(`${document.URL}//songs/`);
 
   let response = await a.text();
 
@@ -94,7 +94,7 @@ async function DisplayALbum(params) {
   Array.from(anchors).forEach(async (e) => {
     if (e.href.includes("songs/")) {
       let folder = e.href.split("/").slice(-1)[0];
-      let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
+      let a = await fetch(`${document.URL}/songs/${folder}/info.json`);
 
       let response = await a.json();
       console.log(response);
@@ -120,7 +120,7 @@ async function DisplayALbum(params) {
                 </svg>
               </div>
 
-              <img src="/songs/${folder}/cover.jpg" alt="" />
+              <img src="${document.URL}/songs/${folder}/cover.jpg" alt="" />
               <h2>${response.title}</h2>
               <p>${response.description}</p>
             </div>     
